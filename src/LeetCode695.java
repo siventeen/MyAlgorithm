@@ -1,27 +1,31 @@
 public class LeetCode695 {
 
-    public static void main(String[] args) {
-        int[][] grid = new int[][]{{1,1,0},{1,1,0},{0,1,0}};
-        int ans = 0;
-        for (int i = 0; i != grid.length; ++i) {
-            for (int j = 0; j != grid[0].length; ++j) {
-                ans = Math.max(ans, dfs(grid, i, j));
+
+    public int maxAreaOfIsland(int[][] grid) {
+        int n = grid.length, m = grid[0].length;
+        int res = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (grid[i][j] == 1) {
+                    res = Math.max(res, dfs(grid, i, j));
+                }
             }
         }
-        System.out.println(ans);
+
+        return res;
     }
-    public static int dfs(int[][] grid, int cur_i, int cur_j) {
-        if (cur_i < 0 || cur_j < 0 || cur_i == grid.length || cur_j == grid[0].length || grid[cur_i][cur_j] != 1) {
+
+    private int dfs(int[][] grid, int i, int j) {
+        int n = grid.length, m = grid[0].length;
+        if (i < 0 || j < 0 || i >= n || j >= m) {
             return 0;
         }
-        grid[cur_i][cur_j] = 0;
-        int[] di = {0, 0, 1, -1};
-        int[] dj = {1, -1, 0, 0};
-        int ans = 1;
-        for (int index = 0; index != 4; ++index) {
-            int next_i = cur_i + di[index], next_j = cur_j + dj[index];
-            ans += dfs(grid, next_i, next_j);
+        if (grid[i][j] == 0) {
+            return 0;
         }
-        return ans;
+        grid[i][j] = 0;
+        return 1+ dfs(grid, i - 1, j) + dfs(grid, i, j - 1) + dfs(grid, i + 1, j) + dfs(grid, i, j + 1);
     }
+
+
 }
