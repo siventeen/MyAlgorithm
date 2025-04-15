@@ -10,9 +10,11 @@ public class LeetCode694 {
         Set<String> codeSet = new HashSet<>();
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                StringBuilder sb = new StringBuilder();
-                dfs(grid, i, j, sb, 0);
-                codeSet.add(sb.toString());
+                if (grid[i][j] == 1) {
+                    StringBuilder sb = new StringBuilder();
+                    dfs(grid, i, j, sb, 0);
+                    codeSet.add(sb.toString());
+                }
             }
         }
         return codeSet.size();
@@ -25,6 +27,7 @@ public class LeetCode694 {
         if (grid[i][j] == 0) {
             return;
         }
+        grid[i][j] = 0;
         // 记录进入节点时候的信息
         sb.append(inNodeNum).append('.');
         dfs(grid, i + 1, j, sb, 1);
