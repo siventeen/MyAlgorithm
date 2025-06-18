@@ -2,7 +2,7 @@ public class LeetCode221 {
     public int maximalSquare(char[][] matrix) {
         int m = matrix.length;
         int n = matrix[0].length;
-        // dp[i][j] 表示matrix[0..i][0..j]
+        // dp[i][j] 表示以i，j作为右下角的最大正方形的边长
         int[][] dp = new int[m][n];
 
         int maxVal = 0;
