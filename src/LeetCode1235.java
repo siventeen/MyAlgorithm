@@ -11,9 +11,7 @@ public class LeetCode1235 {
             jobs[i][2] = profit[i];
         }
         // 按结束时间排序
-        Arrays.sort(jobs, (a,b) -> {
-            return a[1] - b[1];
-        });
+        Arrays.sort(jobs, (a,b) -> a[1] - b[1]);
 
         // dp[i]表示0到i的时间内，最多能获得的利润
         TreeMap<Integer, Integer> dp = new TreeMap<>();
