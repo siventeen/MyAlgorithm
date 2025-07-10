@@ -4,10 +4,10 @@ public class LeetCode42 {
         int n = height.length;
         int left = 0;
         int right = n - 1;
-        while ( left < n - 1 && (height[left] == 0 || height[left] <= height[left + 1])) {
+        while ( left < right && (height[left] == 0 || height[left] <= height[left + 1])) {
             left++;
         }
-        while (right > left && (height[right] == 0 || height[right] <= height[right - 1])) {
+        while (left < right && (height[right] == 0 || height[right] <= height[right - 1])) {
             right--;
         }
 
